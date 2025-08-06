@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kash Clothing | Premium Fashion</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #d2d2d2;
+      --primary-dark: #151415;
+      --secondary: #ff6e6c;
+      --accent: #00c9b7;
+      --dark: #1a1a2e;
+      --light: #f7f4f0;
+      --text: #333333;
+      --text-light: #6c757d;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+        
+    body {
+      background: linear-gradient(135deg, #f7f4f0 0%, #e6e1dc 100%);
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 10% 20%, rgba(124, 77, 255, 0.05) 0%, rgba(255, 110, 108, 0.05) 100%);
+      z-index: -1;
+    }
+
+    /* Header Styles */
+    .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    padding: 8px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: slideDown 0.6s ease;
+    }
+
+    .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .logo-container img {
+    max-width: 110px;
+    height: auto;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+    }
+
+    .logo-container img:hover {
+    transform: scale(1.1);
+    }
+
+    .nav-links {
+    display: flex;
+    gap: 20px;
+    }
+
+    .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 3px 0;
+    transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+    color: white;
+    }
+
+    .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+    width: 100%;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .logo-container img {
+        max-width: 110px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 50px;
+      background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.6)), url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(124, 77, 255, 0.1) 0%, rgba(255, 110, 108, 0.1) 100%);
+      z-index: 0;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-light);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+    
+    /* Product Section */
+    .products-section {
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 60px;
+      color: var(--dark);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    .product-card {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      margin-bottom: 30px;
+      position: relative;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.6s forwards;
+    }
+    
+    .product-card:nth-child(1) { animation-delay: 0.2s; }
+    .product-card:nth-child(2) { animation-delay: 0.4s; }
+    .product-card:nth-child(3) { animation-delay: 0.6s; }
+    .product-card:nth-child(4) { animation-delay: 0.8s; }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--secondary);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      z-index: 10;
+      animation: pulse 2s infinite;
+    }
+    
+    .product-image {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+    
+    .product-content {
+      padding: 20px;
+    }
+    
+    .card-title {
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+    
+    .product-card:hover .card-title {
+      color: var(--primary);
+    }
+    
+    .card-text {
+      color: var(--text-light);
+      margin-bottom: 20px;
+      min-height: 60px;
+    }
+    
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .btn-whatsapp {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border: none;
+      padding: 12px 20px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn-whatsapp::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(124, 77, 255, 0.3);
+    }
+    
+    .btn-whatsapp:hover::before {
+      opacity: 1;
+    }
+    
+    .btn-whatsapp i {
+      transition: transform 0.3s ease;
+    }
+    
+    .btn-whatsapp:hover i {
+      transform: scale(1.2);
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 80px 0;
+      background: linear-gradient(to bottom, #f7f4f0 0%, #e6e1dc 100%);
+      position: relative;
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: white;
+    }
+    
+    .feature-title {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 15px;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 30px;
+      position: relative;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+    
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 110, 108, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(255, 110, 108, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 110, 108, 0);
+      }
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .product-image {
+        height: 250px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero {
+        padding: 60px 0 30px;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .product-image {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+        <div class="header-content">
+        <div class="logo-container">
+            <img src="logo.png" alt="Kash Clothing Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#collections" class="nav-link">Collections</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        </div>
+    </div>
+    </header>
+
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Elevate Your Style with Kash Clothing</h1>
+        <p class="hero-subtitle">Discover premium quality fashion that combines comfort, style, and elegance for every occasion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section" id="collections">
+    <div class="container">
+      <h2 class="section-title">Featured Collection</h2>
+      
+      <div class="row g-4">
+        <!-- Product 1 -->
+        <div class="col-md-4">
+          <div class="product-card">
+            <div class="product-badge">Bestseller</div>
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" alt="Stylish Jacket" class="product-image">
+            <div class="product-content">
+              <h5 class="card-title">Premium Winter Jacket</h5>
+              <p class="card-text">Elegant and comfortable jacket perfect for any occasion. Water-resistant and insulated.</p>
+              <div class="product-price">$129.99</div>
+              <a href="#" class="btn btn-whatsapp" onclick="sendWhatsApp('Premium Winter Jacket')">
+                <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="col-md-4">
+          <div class="product-card">
+            <div class="product-badge">New Arrival</div>
+            <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Casual Shirt" class="product-image">
+            <div class="product-content">
+              <h5 class="card-title">Designer Casual Shirt</h5>
+              <p class="card-text">Premium quality casual shirt for everyday wear. Breathable fabric with stylish patterns.</p>
+              <div class="product-price">$89.99</div>
+              <a href="#" class="btn btn-whatsapp" onclick="sendWhatsApp('Designer Casual Shirt')">
+                <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Denim Jeans" class="product-image">
+            <div class="product-content">
+              <h5 class="card-title">Slim Fit Denim Jeans</h5>
+              <p class="card-text">Stylish and durable denim jeans with modern fit. Comfortable for all-day wear.</p>
+              <div class="product-price">$79.99</div>
+              <a href="#" class="btn btn-whatsapp" onclick="sendWhatsApp('Slim Fit Denim Jeans')">
+                <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="col-md-4">
+          <div class="product-card">
+            <div class="product-badge">Limited Edition</div>
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Summer Dress" class="product-image">
+            <div class="product-content">
+              <h5 class="card-title">Elegant Summer Dress</h5>
+              <p class="card-text">Lightweight and breezy summer dress perfect for warm days. Flattering cut and design.</p>
+              <div class="product-price">$109.99</div>
+              <a href="#" class="btn btn-whatsapp" onclick="sendWhatsApp('Elegant Summer Dress')">
+                <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Formal Suit" class="product-image">
+            <div class="product-content">
+              <h5 class="card-title">Tailored Formal Suit</h5>
+              <p class="card-text">Impeccably tailored suit for special occasions. Premium wool blend fabric.</p>
+              <div class="product-price">$249.99</div>
+              <a href="#" class="btn btn-whatsapp" onclick="sendWhatsApp('Tailored Formal Suit')">
+                <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="col-md-4">
+          <div class="product-card">
+            <div class="product-badge">Sale</div>
+            <img src="https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Athletic Wear" class="product-image">
+            <div class="product-content">
+              <h5 class="card-title">Performance Athletic Set</h5>
+              <p class="card-text">Moisture-wicking athletic wear for maximum performance and comfort during workouts.</p>
+              <div class="product-price">$64.99</div>
+              <a href="#" class="btn btn-whatsapp" onclick="sendWhatsApp('Performance Athletic Set')">
+                <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="about">
+    <div class="container">
+      <h2 class="section-title">Why Choose Kash Clothing</h2>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <h3 class="feature-title">Premium Quality</h3>
+            <p>We use only the finest materials and craftsmanship to ensure lasting comfort and style.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3 class="feature-title">Sustainable Fashion</h3>
+            <p>Ethically produced clothing with minimal environmental impact. Feel good about what you wear.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-truck"></i>
+            </div>
+            <h3 class="feature-title">Fast Delivery</h3>
+            <p>Free shipping on all orders. Get your premium fashion delivered right to your doorstep.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">Kash Clothing</h4>
+          <p>Premium fashion for those who appreciate quality and style in every detail.</p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">Summer Collection</a></li>
+            <li><a href="#">Winter Collection</a></li>
+            <li><a href="#">Special Offers</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-md-4">
+          <h4 class="footer-title">Contact Us</h4>
+          <ul class="footer-links">
+            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Fashion Street, New York</li>
+            <li><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-envelope me-2"></i> info@kashclothing.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2023 Kash Clothing. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function sendWhatsApp(productName) {
+      const phoneNumber = 'YOUR_PHONE_NUMBER';
+      const message = `Hi, I'm interested in the ${productName} from Kash Clothing.`;
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+    
+    // Add animations on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      document.querySelectorAll('.product-card, .feature-card').forEach(card => {
+        observer.observe(card);
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
